@@ -242,6 +242,9 @@
 #include "../usermods/LD2410_v2/usermod_ld2410.h"
 #endif
 
+#include "../usermods/usermod_v2_singleTrans/usermod_v2_singleTrans.h"
+
+
 void registerUsermods()
 {
 /*
@@ -249,7 +252,7 @@ void registerUsermods()
    * || || ||
    * \/ \/ \/
    */
-  //UsermodManager::add(new MyExampleUsermod());
+  UsermodManager::add(new SingleWipeUserMod());
 
   #ifdef USERMOD_BATTERY
   UsermodManager::add(new UsermodBattery());

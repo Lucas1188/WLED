@@ -7,9 +7,19 @@
 #pragma once
 
 #include "wled.h"
-#include <ld2410.h>
-#include <HardwareSerial.h>
-class LD2410Usermod : public Usermod {
+
+#warning **** Included USERMOD_LD2410 ****
+
+#ifndef WLED_ENABLE_MQTT
+#error "This user mod requires MQTT to be enabled."
+#endif
+
+#pragma once
+
+#include "wled.h"
+#include <ld2450.h>
+
+class LD2450Usermod : public Usermod {
 
   private:
 
@@ -23,12 +33,13 @@ class LD2410Usermod : public Usermod {
     int8_t default_uart_tx = 18;
 
 
-    String mqttMovementTopic;// = F("");
-    String mqttStationaryTopic; //= F("");
+    String mqttMovementTopic = F("");
+    String mqttStationaryTopic = F("");
     bool mqttInitialized = false;
     bool HomeAssistantDiscovery = true; // Publish Home Assistant Discovery messages
 
-    ld2410 radar;
+
+    LD2450 radar;
     bool stationary_detected = false;
     bool last_stationary_state = false;
     bool movement_detected = false;
@@ -234,3 +245,6 @@ void LD2410Usermod::publishMqtt(const char* topic, const char* state, bool retai
   }
 #endif
 }
+
+
+
